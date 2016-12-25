@@ -7,6 +7,7 @@ Utilities.
 
 import numpy as np
 import nibabel as nib
+import re
 
 def loadImage(f):
     """ Load NIfTI image.
@@ -17,6 +18,14 @@ def loadImage(f):
 
     return mat, aff, img
 
+def readLUTLine(line):
+    """ Read line in VOI look-up table file.
+    """
+    reg = re.compile(r"(\d+)\s+(\S+)")
+    res = reg.match(line)
+    grps = res.groups()
+
+    return {ing(grps[0]) : grps[1]}
 
 def loadLUT(f):
     """ Load VOI look-up table file.
@@ -30,4 +39,16 @@ def loadLUT(f):
         2   WM
         3   CSF
 
-    the aboves mean 
+    if above, voxels with 1, 2 and 3 indicate gray matter (GM), white matter (WM) and cerebrospinal fluid (CSF).
+
+    It outputs dictionary {<VOI No.> : <VOI name>}.
+    """
+    with open(f, "r") as f:
+        lines = f.readlines()
+
+        retDict = {}
+        [retDict.update(readLUTLine(line)) for line in lines]
+
+    return retDict
+
+
