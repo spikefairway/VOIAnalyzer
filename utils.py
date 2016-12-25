@@ -25,7 +25,7 @@ def readLUTLine(line):
     res = reg.match(line)
     grps = res.groups()
 
-    return {ing(grps[0]) : grps[1]}
+    return {int(grps[0]) : grps[1]}
 
 def loadLUT(f):
     """ Load VOI look-up table file.
@@ -39,7 +39,8 @@ def loadLUT(f):
         2   WM
         3   CSF
 
-    if above, voxels with 1, 2 and 3 indicate gray matter (GM), white matter (WM) and cerebrospinal fluid (CSF).
+    if above, voxels with 1, 2 and 3 indicate gray matter (GM), 
+    white matter (WM) and cerebrospinal fluid (CSF).
 
     It outputs dictionary {<VOI No.> : <VOI name>}.
     """
