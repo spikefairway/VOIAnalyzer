@@ -2,13 +2,11 @@
 # coding : utf-8
 
 """
-Main module for VOI analyzer.
+Basis for VOI analyzer.
 """
 
 import pandas as pd
 import numpy as np
-import argparse
-import os
 
 import VOIAnalyzer.utils as utils
 
