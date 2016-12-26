@@ -10,6 +10,8 @@ import numpy as np
 import argparse
 import os
 
+import VOIAnalyzer.utils as utils
+
 def _analysis(img_mat, voi_mat, voi_no, eps=1e-12):
     """ Extract VOI statistices for each VOI.
     """
