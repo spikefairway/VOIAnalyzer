@@ -55,9 +55,10 @@ def voi_analysis(img_file, voi_file, lut_file=None):
     voi_mat = utils.loadImage(voi_file)[0].astype(np.int16)
     
     # Extract
-    maxNo = voi_mat.max()
+    vno_list = np.unique(voi_mat)
+    np.delete(vno_list, np.where(voi_list == 0)[0])
     out_tab = pd.concat([_analysis(img_mat, voi_mat, v_no)
-                            for v_no in range(1, maxNo + 1, 1)])
+                            for v_no in vno_list])
 
     # Calculate volumes (unit: cm3)
     vol_per_vox = np.abs(np.prod(np.diag(img_aff[:3, :3])))
