@@ -56,7 +56,6 @@ def voi_analysis(img_file, voi_file, lut_file=None):
     
     # Extract
     vno_list = np.unique(voi_mat)
-    np.delete(vno_list, np.where(vno_list == 0)[0])
     out_tab = pd.concat([_analysis(img_mat, voi_mat, v_no)
                             for v_no in vno_list])
 
