@@ -132,6 +132,7 @@ class VOIAnalyzerGUIPanel(wx.Panel):
         # Button to analyze and close
         self.button_analyze = wx.Button(self, wx.ID_ANY, "Analyze")
         self.button_analyze.Bind(wx.EVT_BUTTON, self.OnPushButton_analyze)
+        self.button_analyze.Disable()
         self.button_close = wx.Button(self, wx.ID_ANY, "Close")
         self.button_close.Bind(wx.EVT_BUTTON, self.OnPushButton_close)
         
@@ -155,11 +156,22 @@ class VOIAnalyzerGUIPanel(wx.Panel):
 
         self.SetSizer(layout_main)
 
+    def check_enable(self):
+        """ Check enable to analyze.
+        """
+        isEnable = self.listbox_img.GetCount() > 0 and self.text_voi and self.text_voi
+        if isEnable:
+            self.button_analyze.Enable()
+        else:
+            self.button_analyze.Disable()
+
+        return None
+
     def OnPushButton_img_plus(self, evt):
         """ Callback for plus button
         """
         # File dialog
-        dlg = wx.FileDialog(self, style=wx.FD_OPEN|wx.FD_MULTIPLE|wx.FD_FILE_MUST_EXIST)
+        dlg = wx.FileDialog(self, style=wx.FD_OPEN|wx.FD_MULTIPLE|wx.FD_FILE_MUST_EXIST, wildcard="NIfTI image (.nii)|.nii")
         res = dlg.ShowModal()
         if res == wx.ID_OK:
             flist = dlg.GetPaths()
@@ -168,6 +180,8 @@ class VOIAnalyzerGUIPanel(wx.Panel):
             self.listbox_img.Append(flist)
         dlg.Destroy()
 
+        self.check_enable()
+
         return None
 
     def OnPushButton_img_minus(self, evt):
@@ -175,6 +189,8 @@ class VOIAnalyzerGUIPanel(wx.Panel):
         """
         idx_selected = self.listbox_img.GetSelections()
         [self.listbox_img.Delete(idx) for idx in reversed(idx_selected)]
+
+        self.check_enable()
 
         return None
 
@@ -203,6 +219,8 @@ class VOIAnalyzerGUIPanel(wx.Panel):
         if fpath is not None:
             self.text_voi.SetValue(fpath)
 
+        self.check_enable()
+
         return None
 
     def OnPushButton_out(self, evt):
@@ -214,6 +232,8 @@ class VOIAnalyzerGUIPanel(wx.Panel):
 
         if fpath is not None:
             self.text_tab.SetValue(fpath)
+
+        self.check_enable()
 
         return None
 
@@ -285,7 +305,7 @@ class VOIAnalyzerGUIPanel(wx.Panel):
 
                 # Extract
                 tab0 = _analysis(img_mat, voi_mat, vno)
-                tab0.loc[:, "Path"] = [img_file] * nVOI
+                tab0.loc[:, "Path"] = [img_file]
                 tab_list.append(tab0)
 
                 cur_progress += 1
