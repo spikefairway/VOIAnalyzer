@@ -8,12 +8,12 @@ Current development status for VOIAnalyzer is beta. For stable use, PLEASE WAIT 
 
 ## Requirements
 
-- Python (2.7 or 3.5)
-- Numpy
-- Pandas
-- nipy
-- nibabel
-- wxPython
+- [Python](https://www.python.org/) (2.7 or 3.5)
+- [Numpy](http://www.numpy.org/)
+- [Pandas](http://pandas.pydata.org/)
+- [nipy](http://nipy.org/nipy/)
+- [nibabel](http://nipy.org/nibabel/)
+- [wxPython](https://wxpython.org/Phoenix/docs/html/)
 
 ## Usage
 
@@ -65,7 +65,7 @@ positional arguments:
 ### Usage for GUI-based tool
 
 ```
-$ python VOIAnalyzerGUI
+$ python VOIAnalyzerGUI.py
 ```
 
 ## License
