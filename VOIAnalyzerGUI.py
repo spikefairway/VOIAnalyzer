@@ -128,6 +128,7 @@ class VOIAnalyzerGUIPanel(wx.Panel):
 
         # Button to analyze and close
         self.button_analyze = wx.Button(self, wx.ID_ANY, "Analyze")
+        self.button_analyze.Bind(wx.EVT_BUTTON, self.OnPushButton_analyze)
         self.button_close = wx.Button(self, wx.ID_ANY, "Close")
         self.button_close.Bind(wx.EVT_BUTTON, self.OnPushButton_close)
         
