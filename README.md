@@ -4,20 +4,50 @@
 
 ## Version
 
-Current development status for VOIAnalyzer is pre-alpha. PLEASE WAIT TILL RELEASE OF BETA OR STABLE VERSION.
+Current development status for VOIAnalyzer is beta. For stable use, PLEASE WAIT TILL RELEASE OF STABLE VERSION.
 
 ## Requirements
 
-- Python 2.7 or 3.5
+- Python (2.7 or 3.5)
 - Numpy
 - Pandas
 - nipy
 - nibabel
 - wxPython
 
-## CUI-base usage
+## Usage
+
+VOIAnalyzer requires the following files to analyze:
+
+- Image files to analyze
+- VOI map file
+- VOI look-up table file (optional)
+
+Each voxel in VOI map has VOI No. as image intensity. VOIAnalyzer extracts statistics (mean, SD, max, min, etc.) for intensities on VOIs defined in VOI map, and outputs the statistics to CSV file. VOIAnalyzer expects images co-registered to VOI map. Image orientation, image size and voxel size for all image files must be same as VOI map file. Only [NIfTI-1 format](https://nifti.nimh.nih.gov/nifti-1) is supported as image files and VOI map file.
+
+
+### VOI look-up table
+
+You can define look-up table to translate VOI No. to VOI name with a text file. The look-up table file is a tab-separated text file as follows:
 
 ```
+<VOI No.>   <VOI name>
+```
+
+For example,
+
+```
+1   GM
+2   WM
+3   CSF
+```
+
+means voxels with 1, 2 and 3 indicate gray matter (GM), white matter (WM) and cerebrospinal fluid (CSF). If you give look-up table file as an argument, you can see VOI name on outputed CSV file.
+
+### Usage for CUI-based tool
+
+```
+$ python VOIAnalyzerCUI.py -h
 usage: VOIAnalyzerCUI.py [-h] -v VOI -o OUT [-l LUT] images [images ...]
 
 Extract VOI statistics
@@ -30,6 +60,12 @@ positional arguments:
     -v VOI, --voi VOI  VOI map file
     -o OUT, --out OUT  Output file [CSV]
     -l LUT, --lut LUT  VOI look-up table file
+```
+
+### Usage for GUI-based tool
+
+```
+$ python VOIAnalyzerGUI
 ```
 
 ## License
