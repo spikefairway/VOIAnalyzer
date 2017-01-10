@@ -31,7 +31,10 @@ def _analysis(img_mat, voi_mat, voi_no, eps=1e-12):
                             "SD" : [v_sd],
                             "CoV" : [v_cov],
                             "Max" : [v_max],
-                            "Min" : [v_min]})
+                            "Min" : [v_min]},
+                            columns=["VOI No.", "No. of voxels",
+                                     "Mean", "SD", "CoV",
+                                     "Max", "Min"])
 
     return out_tab
 
@@ -61,7 +64,7 @@ def voi_analysis(img_file, voi_file, lut_file=None):
 
     # Calculate volumes (unit: cm3)
     vol_per_vox = np.abs(np.prod(np.diag(img_aff[:3, :3])))
-    out_tab.loc[:, "Volume"] = out_tab.loc[:, "No. of voxels"] / 1000.
+    out_tab.loc[:, "Volume"] = out_tab.loc[:, "No. of voxels"].values * vol_per_vox / 1000.
 
     # Apply look-up table
     if lut_file is not None:
