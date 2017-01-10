@@ -9,6 +9,7 @@ import wx
 import os
 
 from VOIAnalyzer.base import _analysis
+import VOIAnalyzer.utils as utils
 
 class VOIAnalyzerGUI(wx.Frame):
     """ Frame for VOIAnalyzer.
