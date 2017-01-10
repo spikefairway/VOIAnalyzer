@@ -23,7 +23,9 @@ VOIAnalyzer requires the following files to analyze:
 - VOI map file
 - VOI look-up table file (optional)
 
-Each voxel in VOI map has VOI No. as image intensity. VOIAnalyzer extracts statistics (mean, SD, max, min, etc.) for intensities on VOIs defined in VOI map, and outputs the statistics to CSV file. VOIAnalyzer expects images co-registered to VOI map. Image orientation, image size and voxel size for all image files must be same as VOI map file. Only [NIfTI-1 format](https://nifti.nimh.nih.gov/nifti-1) is supported as image files and VOI map file.
+Each voxel in VOI map has VOI No. as image intensity. VOIAnalyzer extracts statistics (mean, SD, max, min, etc.) for intensities on VOIs defined in VOI map, and outputs the statistics to CSV file.
+
+VOIAnalyzer expects images co-registered to VOI map. Image orientation, image size and voxel size for all image files must be same as VOI map file. Only [NIfTI-1 format](https://nifti.nimh.nih.gov/nifti-1) is supported as image files and VOI map file.
 
 
 ### VOI look-up table
