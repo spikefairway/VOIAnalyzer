@@ -171,13 +171,13 @@ class VOIAnalyzerGUIPanel(wx.Panel):
         """ Callback for plus button
         """
         # File dialog
-        dlg = wx.FileDialog(self, style=wx.FD_OPEN|wx.FD_MULTIPLE|wx.FD_FILE_MUST_EXIST, wildcard="NIfTI image (.nii)|.nii")
+        dlg = wx.FileDialog(self, style=wx.FD_OPEN|wx.FD_MULTIPLE|wx.FD_FILE_MUST_EXIST, wildcard="NIfTI image (.nii)|*.nii")
         res = dlg.ShowModal()
         if res == wx.ID_OK:
             flist = dlg.GetPaths()
 
             # Append files
-            self.listbox_img.Append(flist)
+            [self.listbox_img.Append(f) for f in flist]
         dlg.Destroy()
 
         self.check_enable()
@@ -214,7 +214,7 @@ class VOIAnalyzerGUIPanel(wx.Panel):
         """
         # Open dialog
         fpath = self.open_file(message="Open VOI map file",
-                               wildcard="NIfTI image (.nii)|.nii")
+                               wildcard="NIfTI image (.nii)|*.nii")
 
         if fpath is not None:
             self.text_voi.SetValue(fpath)
