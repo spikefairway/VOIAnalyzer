@@ -4,7 +4,7 @@
 
 ## Version
 
-Current development status for VOIAnalyzer is pre-alpha. PLEASE DO NOT DOWNLOAD AND USE IT.
+Current development status for VOIAnalyzer is pre-alpha. PLEASE WAIT TILL RELEASE OF BETA OR STABLE VERSION.
 
 ## Requirements
 
