@@ -256,7 +256,8 @@ class VOIAnalyzerGUIPanel(wx.Panel):
                                           "Initiate analysis",
                                           maximum=progress_max,
                                           parent=self)
-        self.progress.ShowModal()
+        #self.progress.ShowModal()
+        self.progress.Show()
 
         # VOI analysis
         tab_list = []
@@ -284,6 +285,7 @@ class VOIAnalyzerGUIPanel(wx.Panel):
 
                 # Extract
                 tab0 = _analysis(img_mat, voi_mat, vno)
+                tab0.loc[:, "Path"] = [img_file] * nVOI
                 tab_list.append(tab0)
 
                 cur_progress += 1
@@ -299,13 +301,20 @@ class VOIAnalyzerGUIPanel(wx.Panel):
         # LUT file
         self.progress.Update(cur_progress,
                              newmsg="Applying look-up table")
+        col_list = ["VOI No.", "No. of voxels",
+                     "Mean", "SD", "CoV",
+                     "Max", "Min", "Volume"]
+
         if not self.text_lut.IsEmpty:
             lut_file = self.text_lut.GetValue()
             lut = utils.loadLUT(lut_file)
             out_tab.loc[:, "VOI"] = out_tab.loc[:, "VOI No."].map(lut)
+            col_list.append("VOI")
+        col_list.append("Path")
         cur_progress += 1
 
         # Output
+        out_tab = out_tab.loc[:, col_list]
         out_tab.to_csv(out_file, index=False)
         self.progress.Update(progress_max,
                              newmsg="Complete.")
