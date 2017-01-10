@@ -8,6 +8,8 @@ Current development status for VOIAnalyzer is beta. For stable use, PLEASE WAIT 
 
 ## Requirements
 
+- OS: Linux or Mac OS X
+    - It should work well in Windows system, but, it has not been tested yet.
 - [Python](https://www.python.org/) (2.7 or 3.5)
 - [Numpy](http://www.numpy.org/)
 - [Pandas](http://pandas.pydata.org/)
