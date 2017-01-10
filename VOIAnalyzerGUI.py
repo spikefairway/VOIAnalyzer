@@ -7,6 +7,8 @@ GUI interface for VOI analyzer.
 
 import wx
 import os
+import numpy as np
+import pandas as pd
 
 from VOIAnalyzer.base import _analysis
 import VOIAnalyzer.utils as utils
@@ -234,7 +236,8 @@ class VOIAnalyzerGUIPanel(wx.Panel):
 
         # VOI map
         voi_file = self.text_voi.GetValue()
-        voi_mat, aff = utils.loadImage(voi_file)[:2].astype(np.int16)
+        voi_mat, aff = utils.loadImage(voi_file)[:2]
+        voi_mat = voi_mat.astype(np.int16)
         vno_list = np.unique(voi_mat)
         nVOI = vno_list.size
 
