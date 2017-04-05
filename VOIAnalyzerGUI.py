@@ -10,8 +10,8 @@ import os
 import numpy as np
 import pandas as pd
 
-from VOIAnalyzer.base import _analysis
-import VOIAnalyzer.utils as utils
+from base import _analysis
+import utils as utils
 
 class VOIAnalyzerGUI(wx.Frame):
     """ Frame for VOIAnalyzer.

@@ -8,7 +8,7 @@ CUI interface for VOI analyzer.
 import pandas as pd
 import argparse
 
-from VOIAnalyzer.base import voi_analysis
+from base import voi_analysis
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Extract VOI statistics")
